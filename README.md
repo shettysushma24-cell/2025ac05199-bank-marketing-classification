@@ -23,8 +23,6 @@ This is a learning starter for the ML Assignment 2 workflow. Replace this text w
 4. Run `python train_models.py`.
 5. Run `streamlit run app.py`.
 
-## Assignment README sections to complete
-
 ### Problem statement
 
 The objective of this project is to predict whether a customer will subscribe to a bank term deposit after a marketing campaign. This is a binary classification problem, where the target outcome is either Yes (customer subscribes) or No (customer does not subscribe).
