@@ -51,7 +51,9 @@ Before training, categorical variables were encoded, numerical variables were sc
 
 ### GitHub Repository Link
 
-[Add your GitHub repository link here]
+## GitHub Repository Link
+
+[View my GitHub repository](https://github.com/shettysushma24-cell/2025ac05199-bank-marketing-classification)
 
 ### Models used
 
@@ -70,9 +72,9 @@ Random Forest Classifier
 ### Model Comparison
 
 Required comparison table:
-               Model  Accuracy    AUC  Precision  Recall     F1    MCC
-       Random Forest    0.8702 0.9519     0.4622  0.9289 0.6173 0.5981
+              Model  Accuracy    AUC  Precision  Recall     F1    MCC
  Logistic Regression    0.8651 0.9438     0.4512  0.9116 0.6036 0.5813
+       Random Forest    0.8580 0.9497     0.4391  0.9407 0.5988 0.5824
        Decision Tree    0.8649 0.9182     0.4493  0.8825 0.5954 0.5676
                  kNN    0.9086 0.9215     0.6606  0.3879 0.4888 0.4613
 Gaussian Naive Bayes    0.8203 0.8393     0.3495  0.6907 0.4642 0.4009
