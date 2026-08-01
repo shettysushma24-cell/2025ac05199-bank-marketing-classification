@@ -49,8 +49,6 @@ Before training, categorical variables were encoded, numerical variables were sc
 
 ### GitHub Repository Link
 
-## GitHub Repository Link
-
 [View my GitHub repository](https://github.com/shettysushma24-cell/2025ac05199-bank-marketing-classification)
 
 ### Models used
@@ -78,15 +76,14 @@ Required comparison table:
 Gaussian Naive Bayes    0.8203 0.8393     0.3495  0.6907 0.4642 0.4009
 
 ### Observations
-
-| ML Model | Observation about Model Performance |
-|---|---|
-| Logistic Regression | Strong AUC (0.9438) and recall (0.9116), but moderate precision indicates false positives. |
-| Decision Tree | Similar to Logistic Regression, but slightly lower AUC, recall, F1-score, and MCC. |
-| kNN | Highest accuracy (0.9086) and precision (0.6606), but low recall (0.3879), so it misses many subscribers. |
-| Gaussian Naive Bayes | Lowest overall scores; its independence assumption may not suit the dataset. |
-| Random Forest | Best balanced model with highest AUC (0.9519), recall (0.9289), F1-score (0.6173), and MCC (0.5981). |
-| Overall Winner | **Random Forest**, because it best balances discrimination, recall, F1-score, and MCC. |
+## Updated Model Observations
+ML Model	Observation about Model Performance
+Logistic Regression	Achieved the highest F1-score (0.6036) and strong accuracy (0.8651). Its recall of 0.9116 shows that it identifies most actual subscribers, though precision remains moderate.
+Random Forest	Achieved the highest AUC (0.9497), recall (0.9407), and MCC (0.5824). It detects the largest proportion of actual subscribers, although its accuracy and F1-score are slightly lower than Logistic Regression.
+Decision Tree	Produced reasonable results but had lower AUC, recall, F1-score, and MCC than Logistic Regression and Random Forest.
+kNN	Had the highest accuracy (0.9086) and precision (0.6606), but low recall (0.3879). It misses many actual subscribers, so accuracy alone is not sufficient for this imbalanced dataset.
+Gaussian Naive Bayes	Had the lowest overall performance, including the lowest AUC, F1-score, and MCC. Its independence assumption may not be suitable for the dataset.
+Overall Winner	Random Forest is selected as the overall winner because it has the best AUC, recall, and MCC. High recall is valuable because it minimizes missed customers who may subscribe to a term deposit.
 
 ### How to Run the Project Locally
 
