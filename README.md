@@ -1,42 +1,217 @@
-# Bank Term Deposit Classification
+# Machine Learning — Assignment 2
+## Bank Term Deposit Prediction — Model Comparison
 
-This is a learning starter for the ML Assignment 2 workflow. Replace this text with your own findings after training.
+## 1. GitHub Repository Link
 
-## Project structure
+**GitHub Repository:** https://github.com/shettysushma24-cell/2025ac05199-bank-marketing-classification
+
+The repository contains the complete source code and project artifacts:
+
+- `train_models.py` — data loading, preprocessing, model training and evaluation
+- `app.py` — Streamlit web application
+- `requirements.txt` — Python dependencies
+- `test_data.csv` — generated test data used for the Streamlit demonstration
+- `data/bank-additional-full.csv` — UCI Bank Marketing dataset
+- `model/` — trained model files, feature-column metadata and model comparison metrics
+
+## 2. Live Streamlit App Link
+
+**Live Streamlit App:** http://localhost:8501/
+
+The Streamlit application allows users to:
+
+- Upload test CSV data
+- Select a machine-learning model
+- Generate bank-term-deposit predictions
+- View subscription probabilities
+- View Accuracy, AUC, Precision, Recall, F1 Score and MCC
+- View the confusion matrix
+- View the classification report
+
+## 3. Screenshot — Executed on BITS Virtual Lab
+
+Add a screenshot showing the Streamlit application running on the BITS Virtual Lab, with the application open in the browser.
+
+Suggested caption:
+
+> Streamlit application running on BITS Virtual Lab with the Bank Term Deposit Prediction interface open in the browser.
+
+## 4. README Content
+
+### a. Problem Statement
+
+Banks conduct marketing campaigns to identify customers who are likely to subscribe to a term deposit. Manually identifying potential customers from a large customer base can be time-consuming and may result in inefficient targeting.
+
+This project builds and compares five machine-learning classification models to predict whether a customer will subscribe to a term deposit after a bank marketing campaign. The prediction is based on customer demographic information, contact details, campaign information and relevant economic indicators.
+
+An interactive Streamlit web application is also provided so that the trained models can be demonstrated and evaluated on test data.
+
+### b. Dataset Description
+
+**Name:** Bank Marketing Dataset — `bank-additional-full.csv`
+
+**Source:** UCI Machine Learning Repository
+
+**Official UCI Dataset Page:**
+
+https://archive.ics.uci.edu/dataset/222/bank+marketing
+
+**Direct UCI Dataset ZIP:**
+
+https://archive.ics.uci.edu/static/public/222/bank+marketing.zip
+
+**Dataset used in this project:**
+
+`bank-additional-full.csv`
+
+**Local project path:**
 
 ```text
-.
-├── app.py                 # Streamlit web application
-├── train_models.py        # trains and saves five classifiers
-├── requirements.txt       # Python dependencies
-├── test_data.csv          # created after training
-├── data/
-│   └── bank-additional-full.csv   # download this file yourself
-└── model/                 # created after training
+data/bank-additional-full.csv
 ```
 
-## Run locally
+The dataset contains **41,188 instances**, **20 predictor features**, and **1 binary target column**, giving **21 columns in total**.
 
-1. Create and activate a virtual environment.
-2. Run `pip install -r requirements.txt`.
-3. Download the UCI Bank Marketing ZIP, extract `bank-additional-full.csv`, and place it in `data/`.
-4. Run `python train_models.py`.
-5. Run `streamlit run app.py`.
+The target column is:
 
-## Assignment README sections to complete
+```text
+y
+```
 
-### Problem statement
+Target encoding:
 
-Write this in your own words: predict whether a customer will subscribe to a term deposit after a bank marketing campaign.
+- `no` → `0`
+- `yes` → `1`
 
-### Dataset description
+The target distribution in the dataset is:
 
-State the official UCI source, the number of rows and features you used, the target column `y`, and any preprocessing you performed.
+- `no`: 36,548 records
+- `yes`: 4,640 records
 
-### Models used
+This indicates a significant class imbalance, with approximately 88.7% non-subscribers and 11.3% subscribers.
 
-Describe the five required models. Paste your actual generated metrics table from `model/metrics_summary.csv`.
+#### Features
+
+The 20 predictor features are:
+
+- `age`
+- `job`
+- `marital`
+- `education`
+- `default`
+- `housing`
+- `loan`
+- `contact`
+- `month`
+- `day_of_week`
+- `duration`
+- `campaign`
+- `pdays`
+- `previous`
+- `poutcome`
+- `emp.var.rate`
+- `cons.price.idx`
+- `cons.conf.idx`
+- `euribor3m`
+- `nr.employed`
+
+#### Data preprocessing
+
+The official UCI CSV file uses a semicolon (`;`) delimiter.
+
+The project performs the following preprocessing:
+
+- The target variable `y` is mapped from `no/yes` to `0/1`.
+- The dataset is split into **80% training and 20% testing** using stratification.
+- Numerical features are processed using:
+  - Median imputation
+  - StandardScaler
+- Categorical features are processed using:
+  - Most-frequent-value imputation
+  - One-hot encoding
+- Unknown categorical values are handled using `handle_unknown="ignore"`.
+- The preprocessing and classifier are combined in a Scikit-learn Pipeline.
+
+The random state is set to **42** for reproducibility.
+
+### c. GitHub Repository Link
+
+**GitHub Repository:** https://github.com/shettysushma24-cell/2025ac05199-bank-marketing-classification
+
+The repository should contain the complete implementation, including the training script, Streamlit application, requirements file, dataset folder, generated test data and trained model artifacts.
+
+### d. Models Used
+
+Five classification models were trained using the same train/test split and preprocessing approach:
+
+1. **Logistic Regression**
+2. **Decision Tree**
+3. **k-Nearest Neighbors (kNN)**
+4. **Gaussian Naive Bayes**
+5. **Random Forest**
+
+Logistic Regression, Decision Tree and Random Forest use class-balanced weighting to address the imbalance between subscribers and non-subscribers.
+
+The models were evaluated using:
+
+- Accuracy
+- AUC
+- Precision
+- Recall
+- F1 Score
+- Matthews Correlation Coefficient (MCC)
+
+### Comparison Table
+
+| ML Model | Accuracy | AUC | Precision | Recall | F1 Score | MCC |
+|---|---:|---:|---:|---:|---:|---:|
+| Logistic Regression | 0.8651 | 0.9438 | 0.4512 | 0.9116 | 0.6036 | 0.5813 |
+| Decision Tree | 0.8649 | 0.9182 | 0.4493 | 0.8825 | 0.5954 | 0.5676 |
+| kNN | 0.9086 | 0.9215 | 0.6606 | 0.3879 | 0.4888 | 0.4613 |
+| Gaussian Naive Bayes | 0.8203 | 0.8393 | 0.3495 | 0.6907 | 0.4642 | 0.4009 |
+| Random Forest | 0.8702 | 0.9519 | 0.4622 | 0.9289 | 0.6173 | 0.5981 |
 
 ### Observations
 
-Compare the models using F1, recall, AUC, and MCC, then identify the best model based on your own actual run.
+#### Logistic Regression
+
+Logistic Regression provides a strong baseline, with an AUC of approximately **0.94**, recall of approximately **0.91**, and F1 Score of approximately **0.60**. Its high recall indicates that it identifies a large proportion of customers who actually subscribe to a term deposit. The relatively low precision reflects the class imbalance and the use of balanced class weights, which encourages the model to identify more positive cases.
+
+#### Decision Tree
+
+The Decision Tree achieves performance comparable to Logistic Regression, with an accuracy of approximately **0.86**, recall of approximately **0.88**, and F1 Score of approximately **0.60**. However, its AUC and MCC are lower than those of Random Forest and Logistic Regression, indicating comparatively weaker overall discrimination.
+
+#### kNN
+
+kNN achieves the **highest accuracy (0.9086)** and **highest precision (0.6606)** among the five models. However, its recall is only **0.3879**, meaning that it misses a substantial number of actual subscribers. Consequently, its F1 Score and MCC are lower than those of Logistic Regression and Random Forest. The result demonstrates the importance of considering multiple evaluation metrics instead of accuracy alone.
+
+#### Gaussian Naive Bayes
+
+Gaussian Naive Bayes has the weakest overall performance, with an AUC of approximately **0.84**, precision of approximately **0.35**, F1 Score of approximately **0.46**, and MCC of approximately **0.40**. Although its recall is reasonably high at approximately **0.69**, the lower precision indicates a relatively high number of false-positive predictions.
+
+#### Random Forest
+
+Random Forest provides the strongest overall performance across the most important balanced metrics. It achieves the highest **AUC (0.9519)**, highest **recall (0.9289)**, highest **F1 Score (0.6173)**, and highest **MCC (0.5981)** among the evaluated models.
+
+The precision of **0.4622** is lower than that of kNN, but this is associated with the substantially higher recall. For the bank marketing use case, identifying a large proportion of potential subscribers can be valuable, making Random Forest a strong overall choice.
+
+### Overall Winner
+
+**Random Forest** is selected as the overall best model for this project.
+
+It provides the best combination of:
+
+- AUC: **0.9519**
+- Recall: **0.9289**
+- F1 Score: **0.6173**
+- MCC: **0.5981**
+
+Although kNN achieves higher accuracy and precision, its recall is considerably lower. Therefore, Random Forest provides a better balance for the objective of identifying potential term-deposit subscribers.
+
+The low precision observed for Random Forest and the other class-balanced models is mainly associated with the highly imbalanced target distribution and the emphasis on detecting the minority positive class. This creates a precision-recall trade-off and is why accuracy alone is not used to select the final model.
+
+## Live App
+
+**Streamlit App:** http://localhost:8501/
+
+The application provides an interactive interface for selecting a trained model, uploading test data, generating predictions, viewing probabilities and inspecting evaluation metrics, confusion matrices and classification reports.
