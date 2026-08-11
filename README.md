@@ -16,7 +16,7 @@ The repository contains the complete source code and project artifacts:
 
 ## 2. Live Streamlit App Link
 
-**Live Streamlit App:** http://localhost:8501/
+**Live Streamlit App:** https://2025ac05199-ml-assignment-bank-marketing-classification.streamlit.app/
 
 The Streamlit application allows users to:
 
@@ -212,6 +212,6 @@ The low precision observed for Random Forest and the other class-balanced models
 
 ## Live App
 
-**Streamlit App:** http://localhost:8501/
+**Streamlit App:** https://2025ac05199-ml-assignment-bank-marketing-classification.streamlit.app/
 
 The application provides an interactive interface for selecting a trained model, uploading test data, generating predictions, viewing probabilities and inspecting evaluation metrics, confusion matrices and classification reports.
