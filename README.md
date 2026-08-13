@@ -20,7 +20,7 @@ The repository contains the complete source code and project artifacts:
 
 The Streamlit application allows users to:
 
-- Upload test CSV data
+- Use the included sample `test_data.csv` or upload your own test CSV data
 - Select a machine-learning model
 - Generate bank-term-deposit predictions
 - View subscription probabilities
@@ -166,10 +166,10 @@ The models were evaluated using:
 | ML Model | Accuracy | AUC | Precision | Recall | F1 Score | MCC |
 |---|---:|---:|---:|---:|---:|---:|
 | Logistic Regression | 0.8651 | 0.9438 | 0.4512 | 0.9116 | 0.6036 | 0.5813 |
-| Decision Tree | 0.8649 | 0.9182 | 0.4493 | 0.8825 | 0.5954 | 0.5676 |
+| Decision Tree | 0.8642 | 0.9174 | 0.4478 | 0.8825 | 0.5941 | 0.5663 |
 | kNN | 0.9086 | 0.9215 | 0.6606 | 0.3879 | 0.4888 | 0.4613 |
 | Gaussian Naive Bayes | 0.8203 | 0.8393 | 0.3495 | 0.6907 | 0.4642 | 0.4009 |
-| Random Forest | 0.8702 | 0.9519 | 0.4622 | 0.9289 | 0.6173 | 0.5981 |
+| Random Forest | 0.8705 | 0.9520 | 0.4629 | 0.9332 | 0.6188 | 0.6005 |
 
 ### Observations
 
@@ -179,7 +179,7 @@ Logistic Regression provides a strong baseline, with an AUC of approximately **0
 
 #### Decision Tree
 
-The Decision Tree achieves performance comparable to Logistic Regression, with an accuracy of approximately **0.86**, recall of approximately **0.88**, and F1 Score of approximately **0.60**. However, its AUC and MCC are lower than those of Random Forest and Logistic Regression, indicating comparatively weaker overall discrimination.
+The Decision Tree achieves performance comparable to Logistic Regression, with an accuracy of approximately **0.86**, recall of approximately **0.88**, and F1 Score of approximately **0.59**. Its AUC of approximately **0.92** and MCC of approximately **0.57** are lower than those of Random Forest and Logistic Regression, indicating comparatively weaker overall discrimination.
 
 #### kNN
 
@@ -191,9 +191,9 @@ Gaussian Naive Bayes has the weakest overall performance, with an AUC of approxi
 
 #### Random Forest
 
-Random Forest provides the strongest overall performance across the most important balanced metrics. It achieves the highest **AUC (0.9519)**, highest **recall (0.9289)**, highest **F1 Score (0.6173)**, and highest **MCC (0.5981)** among the evaluated models.
+Random Forest provides the strongest overall performance across the most important balanced metrics. It achieves the highest **AUC (0.9520)**, highest **recall (0.9332)**, highest **F1 Score (0.6188)**, and highest **MCC (0.6005)** among the evaluated models.
 
-The precision of **0.4622** is lower than that of kNN, but this is associated with the substantially higher recall. For the bank marketing use case, identifying a large proportion of potential subscribers can be valuable, making Random Forest a strong overall choice.
+The precision of **0.4629** is lower than that of kNN, but this is associated with the substantially higher recall. For the bank marketing use case, identifying a large proportion of potential subscribers can be valuable, making Random Forest a strong overall choice.
 
 ### Overall Winner
 
@@ -201,10 +201,10 @@ The precision of **0.4622** is lower than that of kNN, but this is associated wi
 
 It provides the best combination of:
 
-- AUC: **0.9519**
-- Recall: **0.9289**
-- F1 Score: **0.6173**
-- MCC: **0.5981**
+- AUC: **0.9520**
+- Recall: **0.9332**
+- F1 Score: **0.6188**
+- MCC: **0.6005**
 
 Although kNN achieves higher accuracy and precision, its recall is considerably lower. Therefore, Random Forest provides a better balance for the objective of identifying potential term-deposit subscribers.
 
@@ -214,4 +214,4 @@ The low precision observed for Random Forest and the other class-balanced models
 
 **Streamlit App:** https://2025ac05199-ml-assignment-bank-marketing-classification.streamlit.app/
 
-The application provides an interactive interface for selecting a trained model, uploading test data, generating predictions, viewing probabilities and inspecting evaluation metrics, confusion matrices and classification reports.
+The application provides an interactive interface for selecting a trained model, using the included sample `test_data.csv` or uploading test data, generating predictions, viewing probabilities and inspecting evaluation metrics, confusion matrices and classification reports.
