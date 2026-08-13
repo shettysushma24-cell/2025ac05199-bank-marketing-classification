@@ -31,8 +31,8 @@ The Streamlit application allows users to:
 ## 3. Screenshot — Executed on BITS Virtual Lab
 
 The Streamlit application was executed on the BITS Virtual Lab and the screenshot below shows the deployed interface.
+<img width="1280" height="814" alt="BITS_Lab_Screenshot" src="https://github.com/user-attachments/assets/78269497-86c8-4cc5-9adc-f0c7912fc95a" />
 
-![Bank Term Deposit Prediction — BITS Virtual Lab](bits_lab_screenshot.jpg)
 
 > Streamlit application running on BITS Virtual Lab with the Bank Term Deposit Prediction interface open in the browser.
 
