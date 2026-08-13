@@ -23,7 +23,9 @@ from sklearn.metrics import (
 
 
 st.set_page_config(page_title="Bank Deposit Prediction", page_icon="🏦", layout="wide")
-MODEL_FOLDER = Path("model")
+APP_FOLDER = Path(__file__).resolve().parent
+MODEL_FOLDER = APP_FOLDER / "model"
+SAMPLE_TEST_FILE = APP_FOLDER / "test_data.csv"
 MODEL_FILES = {
     "Logistic Regression": "logistic_regression.joblib",
     "Decision Tree": "decision_tree.joblib",
@@ -45,7 +47,7 @@ def metrics_for(actual, predicted, probabilities) -> dict[str, float]:
 
 
 st.title("🏦 Bank Term Deposit Prediction")
-st.caption("Upload test data, select a saved classifier, and inspect its results.")
+st.caption("Use the included sample test data or upload your own CSV, then select a saved classifier and inspect its results.")
 
 if not (MODEL_FOLDER / "metrics_summary.csv").exists():
     st.error("Model files are missing. Run train_models.py before starting the app.")
@@ -58,18 +60,43 @@ with open(MODEL_FOLDER / "feature_columns.json", encoding="utf-8") as file:
 left, right = st.columns([1, 2])
 with left:
     selected_name = st.selectbox("Select a machine-learning model", list(MODEL_FILES))
-    uploaded_file = st.file_uploader("Upload a CSV test file", type="csv")
+
+    input_method = st.radio(
+        "Choose test data",
+        ["Use sample test_data.csv", "Upload your own CSV"],
+        index=0,
+    )
+
+    uploaded_file = None
+    if input_method == "Upload your own CSV":
+        uploaded_file = st.file_uploader(
+            "Upload a CSV test file",
+            type="csv",
+            help="Upload a CSV containing the required feature columns and actual_label (or y) for evaluation.",
+        )
+    elif not SAMPLE_TEST_FILE.exists():
+        st.error(
+            "Sample test_data.csv is not available in the deployed repository. "
+            "Please upload a CSV instead."
+        )
+
 with right:
     st.subheader("Metrics saved during training")
     st.dataframe(saved_metrics.round(4), use_container_width=True, hide_index=True)
 
-st.info("For the complete assignment demonstration, upload the generated test_data.csv file.")
-
-if uploaded_file is None:
-    st.stop()
+if input_method == "Use sample test_data.csv":
+    if not SAMPLE_TEST_FILE.exists():
+        st.stop()
+    data_source = SAMPLE_TEST_FILE
+    st.success("Using the sample test_data.csv included with the application.")
+else:
+    if uploaded_file is None:
+        st.info("Upload a CSV file to continue.")
+        st.stop()
+    data_source = uploaded_file
 
 # sep=None allows both ordinary comma CSVs and the original semicolon UCI CSV.
-uploaded_data = pd.read_csv(uploaded_file, sep=None, engine="python")
+uploaded_data = pd.read_csv(data_source, sep=None, engine="python")
 
 if "actual_label" in uploaded_data.columns:
     actual = uploaded_data.pop("actual_label")
